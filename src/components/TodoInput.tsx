@@ -12,20 +12,22 @@ import {
 import type { NotificationPlacement } from "antd/es/notification/interface";
 
 import moment from "moment";
+import { todoActionCreator, TodoType, TodoStatesType } from "../redux/todoSlice";
+import {useDispatch } from "react-redux";
+// type propsType = {
+//   addTodo: (
+//     uid: string,
+//     title: string,
+//     body: string,
+//     done: boolean,
+//     sticker: string,
+//     date: string
+//   ) => void;
+// };
 
-type propsType = {
-  addTodo: (
-    uid: string,
-    title: string,
-    body: string,
-    done: boolean,
-    sticker: string,
-    date: string
-  ) => void;
-};
-
-const TodoInput = (props: propsType) => {
+const TodoInput = () => {
   const path = process.env.PUBLIC_URL;
+  const dispatch = useDispatch();
 
   const [api, contextHolder] = notification.useNotification();
   const openNotification = (placement: NotificationPlacement) => {
@@ -57,14 +59,24 @@ const TodoInput = (props: propsType) => {
     //   sticker: values.sticker,
     //   date: day,
     // };
-    props.addTodo(
-      String(new Date().getTime()),
-      values.title,
-      values.body,
-      false,
-      values.sticker,
-      day
-    );
+    // props.addTodo(
+    //   String(new Date().getTime()),
+    //   values.title,
+    //   values.body,
+    //   false,
+    //   values.sticker,
+    //   day
+    // );
+
+    dispatch(todoActionCreator.addTodo({ 
+        uid:String(new Date().getTime()),
+        title:values.title,
+        body:values.body,
+        done: false,
+        sticker: values.sticker,
+        date: day
+    }))
+
     // 항목 초기화
     form.resetFields();
   };

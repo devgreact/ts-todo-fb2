@@ -9,7 +9,7 @@ type propsType = {
   callBacks: CallBacksType;
   userLogin: Boolean;
 };
-const Todo = ({ states, callBacks, userLogin }: propsType) => {
+const Todo = () => {
   // 사용자가 회원가입을 하거나 로그인을 한 상태가 아니라면
   // 로그인 화면으로 이동할 거에요.
   const navigator = useNavigate();
@@ -24,7 +24,7 @@ const Todo = ({ states, callBacks, userLogin }: propsType) => {
 
   return (
     <>
-      <TodoInput addTodo={callBacks.addTodo} />
+      <TodoInput/>
       <TodoList
         todoList={states.todoList}
         updateTodo={callBacks.updateTodo}

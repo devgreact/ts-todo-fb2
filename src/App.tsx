@@ -14,14 +14,8 @@ import TodoEdit from "./pages/TodoEdit";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
 import { useState } from "react";
-type propsType = {
-  states: StatesType;
-  callBacks: CallBacksType;
-  callBacksFireBase: CallBacksFireBaseType;
-  userLogin: Boolean;
-};
 
-function App({ states, callBacks, callBacksFireBase, userLogin }: propsType) {
+function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -30,7 +24,7 @@ function App({ states, callBacks, callBacksFireBase, userLogin }: propsType) {
 
   const handleOk = () => {
     setIsModalOpen(false);
-    callBacksFireBase.fbDeleteUser();
+    // callBacksFireBase.fbDeleteUser();
   };
 
   const handleCancel = () => {
@@ -44,12 +38,12 @@ function App({ states, callBacks, callBacksFireBase, userLogin }: propsType) {
           <css.AppTitle>
             <FormOutlined />
             TodoList App
-            {userLogin && (
+            {/* {userLogin && (
               <>
                 <Button onClick={callBacksFireBase.fbLogout}>로그아웃</Button>
                 <Button onClick={showModal}>회원탈퇴</Button>
               </>
-            )}
+            )} */}
           </css.AppTitle>
         </css.Inner>
         {/* 라우팅 영역 */}
@@ -59,8 +53,8 @@ function App({ states, callBacks, callBacksFireBase, userLogin }: propsType) {
             path="/login"
             element={
               <Login
-                userLogin={userLogin}
-                callBacksFireBase={callBacksFireBase}
+                // userLogin={userLogin}
+                // callBacksFireBase={callBacksFireBase}
               />
             }
           />
@@ -69,8 +63,8 @@ function App({ states, callBacks, callBacksFireBase, userLogin }: propsType) {
             path="/join"
             element={
               <Join
-                callBacksFireBase={callBacksFireBase}
-                userLogin={userLogin}
+                // callBacksFireBase={callBacksFireBase}
+                // userLogin={userLogin}
               />
             }
           />
@@ -79,16 +73,17 @@ function App({ states, callBacks, callBacksFireBase, userLogin }: propsType) {
             path="/"
             element={
               <Todo
-                states={states}
-                callBacks={callBacks}
-                userLogin={userLogin}
+                // states={states}
+                // callBacks={callBacks}
+                // userLogin={userLogin}
               />
             }
           />
           {/* 수정화면 : 편집창 */}
           <Route
             path="/edit/:uid"
-            element={<TodoEdit states={states} callBacks={callBacks} />}
+            // element={<TodoEdit states={states} callBacks={callBacks} />}
+            element={<TodoEdit/>}
           />
           {/* 주소오류 */}
           <Route path="*" element={<NotFound />} />
